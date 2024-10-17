@@ -1,12 +1,15 @@
 import React from "react";
 import { toggleMenu } from "../utils/appSlice";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
+
+  const [search, setSearch] = useState(null);
 
   return (
     <div className="grid grid-flow-col shadow-md py-3 mx-2 h-18 my-2 rounded-lg">
@@ -25,6 +28,9 @@ const Header = () => {
       </div>
       <div className="flex col-span-10 mx-32 h-9">
         <input
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
           type="text"
           value="search"
           className="px-2 py-center border border-gray-400 rounded-l-full w-[500px] shadow-md"
