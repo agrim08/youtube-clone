@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { toggleMenu } from "../utils/appSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { YOUTUBE_SEARCH_API } from "../constants/YOUTUBE_API";
+import { cacheResults } from "../utils/searchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -15,11 +16,19 @@ const Header = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const searchCache = useSelector((store) => store.search);
+
   useEffect(() => {
     //*make an api call after every key press
     //*but if the diff between two key press is < 200ms => decline api call
 
-    const timer = setTimeout(() => getSearchSuggestions(), 200);
+    const timer = setTimeout(() => {
+      if (searchCache[search]) {
+        setSuggestions(searchCache[search]);
+      } else {
+        getSearchSuggestions();
+      }
+    }, 200);
 
     return () => {
       clearTimeout(timer);
@@ -31,6 +40,11 @@ const Header = () => {
     const jsonData = await data.json();
     setSuggestions(jsonData[1]);
     // console.log(jsonData[1]);
+    dispatch(
+      cacheResults({
+        [search]: jsonData[1],
+      })
+    );
   };
 
   return (
