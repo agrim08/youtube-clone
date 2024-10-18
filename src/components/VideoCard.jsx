@@ -1,13 +1,12 @@
 import React from "react";
 
 const VideoCard = ({ info }) => {
-  console.log(info);
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails } = snippet;
 
   return (
-    <div className="p-2 m-2 w-68 h-76 shadow-lg">
-      <div className="h-auto w-[330px] cursor-pointer">
+    <div className="p-2 m-2 h-[330px] w-[345px] shadow-lg">
+      <div className=" cursor-pointer">
         <div>
           <img
             className="rounded-lg"
