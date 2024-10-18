@@ -9,7 +9,7 @@ const Header = () => {
     dispatch(toggleMenu());
   };
 
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState("");
 
   return (
     <div className="grid grid-flow-col shadow-md py-3 mx-2 h-18 my-2 rounded-lg">
@@ -28,11 +28,12 @@ const Header = () => {
       </div>
       <div className="flex col-span-10 mx-32 h-9">
         <input
+          placeholder="search"
           onChange={(e) => {
             setSearch(e.target.value);
           }}
           type="text"
-          value="search"
+          value={search}
           className="px-2 py-center border border-gray-400 rounded-l-full w-[500px] shadow-md"
         />
         <button className="flex items-center justify-evenly cursor-pointer border border-gray-400 rounded-r-full w-20 shadow-md bg-gray-100 text-white">

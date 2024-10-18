@@ -18,8 +18,12 @@ const HomeContainer = () => {
   };
 
   return (
-    <div className="">
-      <VideoCard info={videos[0]} />
+    <div className="flex flex-wrap w-full">
+      {videos.length > 0 ? (
+        videos.map((video) => <VideoCard key={video.id} info={video} />)
+      ) : (
+        <p>Loading ....</p>
+      )}
     </div>
   );
 };
