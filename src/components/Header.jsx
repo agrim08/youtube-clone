@@ -2,6 +2,7 @@ import React from "react";
 import { toggleMenu } from "../utils/appSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Header = () => {
           src="https://ts4.mm.bing.net/th?id=OIP.YwZImfZTSczA_EzsVXFJmAAAAA&pid=15.1"
           alt="menu"
         />
+
         <img
           className="h-6 mx-2 text-center cursor-pointer"
           src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-9.png"
